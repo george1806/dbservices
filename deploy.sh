@@ -143,6 +143,7 @@ check_prerequisites() {
     if [ ! -d "$DATA_DIR" ]; then
         print_warning "Data directory does not exist, will create: $DATA_DIR"
         sudo mkdir -p "$DATA_DIR"
+        sudo chmod 755 "$DATA_DIR"
     fi
     print_success "Data directory: $DATA_DIR"
 
@@ -176,10 +177,12 @@ step_cleanup() {
         fi
 
         sudo mkdir -p "$DATA_DIR"/{mysql,postgres,redis}
+        sudo chmod 777 "$DATA_DIR"/{mysql,postgres,redis}
         print_success "Data directories cleaned and recreated"
     else
         print_info "UPDATE MODE: Keeping existing data directories"
         sudo mkdir -p "$DATA_DIR"/{mysql,postgres,redis}
+        sudo chmod 777 "$DATA_DIR"/{mysql,postgres,redis}
         print_success "Data directories verified"
     fi
 

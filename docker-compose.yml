@@ -4,6 +4,7 @@ services:
     image: mysql:8.0
     container_name: mysql_db
     restart: unless-stopped
+    user: "999:999"
     command: >
       --default-authentication-plugin=mysql_native_password
       --max_connections=200
@@ -50,6 +51,7 @@ services:
     image: postgres:15-alpine
     container_name: postgres_db
     restart: unless-stopped
+    user: "70:70"
     environment:
       POSTGRES_USER: ${POSTGRES_ROOT_USER}
       POSTGRES_PASSWORD: ${POSTGRES_ROOT_PASSWORD}
@@ -105,6 +107,7 @@ services:
     image: redis:7-alpine
     container_name: redis_db
     restart: unless-stopped
+    user: "999:1000"
     command: >
       redis-server
       --requirepass ${REDIS_PASSWORD}
